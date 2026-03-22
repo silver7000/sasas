@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Skin Layout Maker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Conversor de imagen completa → skin PNG 64×64</p>
+          <h1>Crea skins de Minecraft desde una imagen completa del personaje</h1>
+          <p class="lead">
+            Sube una imagen frontal completa con fondo transparente o oscuro, ajusta las proporciones
+            y exporta automáticamente una skin clásica 64×64 parecida al formato estándar de Minecraft.
+          </p>
+        </div>
+        <label class="upload-card" for="imageInput">
+          <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" />
+          <span>Haz clic para subir una imagen</span>
+          <small>PNG, JPG o WEBP</small>
+        </label>
+      </section>
+
+      <section class="controls-grid">
+        <article class="panel controls-panel">
+          <h2>Ajustes</h2>
+          <div class="field-grid">
+            <label>
+              <span>Escala del personaje</span>
+              <input id="scaleRange" type="range" min="60" max="125" value="92" />
+              <output id="scaleValue">92%</output>
+            </label>
+            <label>
+              <span>Altura de la cabeza</span>
+              <input id="headRange" type="range" min="12" max="24" value="18" />
+              <output id="headValue">18%</output>
+            </label>
+            <label>
+              <span>Ancho del torso</span>
+              <input id="torsoRange" type="range" min="18" max="34" value="26" />
+              <output id="torsoValue">26%</output>
+            </label>
+            <label>
+              <span>Ancho del brazo</span>
+              <input id="armRange" type="range" min="8" max="18" value="12" />
+              <output id="armValue">12%</output>
+            </label>
+            <label>
+              <span>Ancho de la pierna</span>
+              <input id="legRange" type="range" min="10" max="20" value="14" />
+              <output id="legValue">14%</output>
+            </label>
+            <label>
+              <span>Margen inferior</span>
+              <input id="footRange" type="range" min="0" max="12" value="3" />
+              <output id="footValue">3%</output>
+            </label>
+            <label>
+              <span>Fondo ignorado</span>
+              <input id="bgRange" type="range" min="0" max="80" value="18" />
+              <output id="bgValue">18%</output>
+            </label>
+            <label class="checkbox-row">
+              <input id="slimToggle" type="checkbox" />
+              <span>Modelo slim (brazos finos)</span>
+            </label>
+            <label class="checkbox-row">
+              <input id="overlayToggle" type="checkbox" checked />
+              <span>Crear segunda capa automática</span>
+            </label>
+          </div>
+          <div class="button-row">
+            <button id="autoBtn" type="button">Recalcular</button>
+            <button id="downloadBtn" type="button" disabled>Descargar skin PNG</button>
+          </div>
+          <p class="hint">
+            Consejo: usa una imagen frontal centrada. El conversor detecta el personaje, separa cabeza,
+            torso, brazos y piernas, y rellena laterales/espalda con una copia sombreada.
+          </p>
+        </article>
+
+        <article class="panel preview-panel">
+          <div class="preview-header">
+            <h2>Vista previa</h2>
+            <span id="statusText">Esperando imagen…</span>
+          </div>
+          <div class="preview-grid">
+            <div>
+              <h3>Imagen fuente</h3>
+              <canvas id="sourceCanvas" width="320" height="640"></canvas>
+            </div>
+            <div>
+              <h3>Skin final 64×64</h3>
+              <canvas id="skinCanvas" width="64" height="64"></canvas>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel instructions-panel">
+        <h2>Cómo funciona</h2>
+        <ol>
+          <li>Subes una imagen completa del personaje.</li>
+          <li>La app detecta el contorno visible y calcula una silueta base.</li>
+          <li>Divide la imagen en cabeza, torso, brazos y piernas usando proporciones ajustables.</li>
+          <li>Construye una skin clásica de Minecraft 64×64 con frente, lados, espalda y capas extra.</li>
+        </ol>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
